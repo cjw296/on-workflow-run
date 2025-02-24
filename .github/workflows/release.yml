@@ -1,5 +1,11 @@
 name: "Release"
 
+run-name: > 
+  Release of ${{ github.event.workflow_run.head_branch }} 
+  at ${{ github.event.workflow_run.head_commit.id }} 
+  from ${{ github.event.workflow_run.head_repository.full_name }} 
+  by ${{ github.actor.login }}
+
 on:
   workflow_run:
     workflows: [Continuous Integration]
@@ -17,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - run: echo 'The triggering workflow passed'
+      - run: "echo 'The triggering workflow passed: ${{ toJson(github.event.workflow_run) }}'"
 
   show-branch:
     runs-on: ubuntu-latest
