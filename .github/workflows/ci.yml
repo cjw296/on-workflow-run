@@ -2,10 +2,9 @@ name: "Continuous Integration"
 
 on:
   push:
-    branches: [main]
+    # nb: no pr-branch below!
+    branches: [main, sample-branch]
   pull_request:
-  schedule:
-    - cron: "0 1 * * *"
 
 jobs:
   tests:
@@ -16,4 +15,4 @@ jobs:
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
         id: extract_branch
 
-      - run: echo 'running on main with ${{ steps.extract_branch.outputs.branch }}'
+      - run: echo 'running on pr-branch with ${{ steps.extract_branch.outputs.branch }}'
