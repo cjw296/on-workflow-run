@@ -2,10 +2,8 @@ name: "Continuous Integration"
 
 on:
   push:
-    branches: [main]
+    branches: [main, sample-branch]
   pull_request:
-  schedule:
-    - cron: "0 1 * * *"
 
 jobs:
   tests:
