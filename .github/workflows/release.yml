@@ -30,6 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          repository: '${{ github.event.workflow_run.head_repository.full_name }}'
           ref: ${{ github.event.workflow_run.head_branch }}
       - run: git branch
       - run: env
